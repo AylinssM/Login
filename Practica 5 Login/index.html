@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio crear un formulario al pulsar un botón</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #c5f4ff, #6c70f1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: url('pngwing.com.png');
+            animation: particlesAnimation 20s linear infinite;
+        }
+        @keyframes particlesAnimation {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .formLabel {
+            display: block;
+            margin-bottom: 10px;
+            color: #00245a;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        .formInput {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #686977;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #e6f3fd;
+            transition: all 0.3s ease;
+        }
+        .formSubmitButton {
+            display: block;
+            width: 100%;
+            margin: 20px 0 0;
+            background-color: #2e2e31;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .formSubmitButton:hover {
+            background-color: #4c56e2;
+            transform: scale(1.1);
+        }
+        .botonCrearFormulario {
+            background-color: #f16c8b;
+            color: white;
+            padding: 20px 40px;
+            font-size: 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .botonCrearFormulario:hover {
+            background-color: #e24c73;
+            transform: scale(1.1);
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        .formLabel:hover {
+            color: #e24c73;
+        }
+        .formInput:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        function crearFormulario() {
+            // CREAR EL FORMULARIO
+            var formulario = document.createElement('form');
+            formulario.classList.add('container');
+            
+            // CREAR EL CAMPO DE USUARIO
+            var labelUsuario = document.createElement('label');
+            labelUsuario.textContent = 'Usuario:';
+            labelUsuario.classList.add('formLabel');
+            formulario.appendChild(labelUsuario);
+            
+            var inputUsuario = document.createElement('input');
+            inputUsuario.type = 'text';
+            inputUsuario.classList.add('formInput');
+            inputUsuario.required = true;
+            inputUsuario.maxLength = 12;
+            inputUsuario.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+            });
+            formulario.appendChild(inputUsuario);
+            
+            // CREAR EL CAMPO DE CONTRASEÑA
+            var labelContrasena = document.createElement('label');
+            labelContrasena.textContent = 'Contraseña:';
+            labelContrasena.classList.add('formLabel');
+            formulario.appendChild(labelContrasena);
+            
+            var inputContrasena = document.createElement('input');
+            inputContrasena.type = 'password';
+            inputContrasena.classList.add('formInput');
+            inputContrasena.required = true;
+            inputContrasena.maxLength = 12;
+            inputContrasena.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+            });
+            formulario.appendChild(inputContrasena);
+            
+            // CREAR EL BOTÓN DE ENVÍO
+            var submitButton = document.createElement('input');
+            submitButton.type = 'submit';
+            submitButton.value = 'Enviar';
+            submitButton.classList.add('formSubmitButton');
+            formulario.appendChild(submitButton);
+            
+            // AÑADIR EL FORMULARIO EN EL BODY
+            document.body.appendChild(formulario);
+
+            // OCULTAR EL BOTÓN DE CREAR FORMULARIO
+            var botonCrearFormulario = document.querySelector('.botonCrearFormulario');
+            botonCrearFormulario.style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <button onclick="crearFormulario()" class="botonCrearFormulario">Crear formulario</button>
+</body>
+</html>
+
+
+
